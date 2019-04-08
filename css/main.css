@@ -1,0 +1,695 @@
+/*公共样式*/
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	color: #333;
+	font-size: 12px;
+	font-family: "微软雅黑";
+	background-color: #fff;
+	/*加入，保证浏览器背景色被更改时的效果*/
+}
+a,a:visited{
+	text-decoration: none;
+	color: #333;
+}
+a:hover{
+	text-decoration: none;
+	color: #e4393c;
+}
+.container{
+	width: 1211px;
+	margin: auto;
+}
+.clearfloat:after{/*使用添加伪类的方法，清除父元素因float而塌陷的问题*/
+	content: '';
+	display: block;
+	clear: both;
+}
+i,b{
+	display: inline-block; /*inline-block模式才能具备宽高*/
+	vertical-align: middle;/*与后面文字垂直居中对齐*/
+}
+i{
+	background-image: url('../images/iconlist_2.png');
+	/*背景图片路径要相对于该CSS文件设置！而不是html文件*/
+	background-repeat: no-repeat;
+	/*i用于多icon合成的sprite图调用，b用于其它icon独立文件调用*/
+}
+li{
+	list-style-type: none;
+}
+input,button{
+	outline: none;
+}
+.lf{
+	float: left;
+}
+.rf{
+	float: right;
+}
+
+/*header部分*/
+/*使用子元素选择方式（>），更严谨，不会影响到孙代以下元素！
+避免三代以下元素设置格式还得清除其影响！
+不希望选择任意的后代元素，而是希望缩小范围，
+只选择某个元素的子元素，请使用子元素选择器,>*/
+.header{
+	background-color: #eee;
+	border-bottom: 1px solid #f7f7f7;
+	line-height: 30px;/*此处书写可同时控制两个子元素的效果！*/
+}
+.header_left{
+	height: 30px;
+	/*width: 30%;不设置左右各占百分比，则自动由两侧向中间排布*/
+}
+.header_left>i{
+	width: 13px;
+	height:13px;
+	background-position: -90px -23px;
+	margin-bottom: 2px; 
+}
+.header_right{
+	height: 30px;
+	/*width: 66%;*/
+}
+.header_right>li{
+	float:left;
+}
+.header_right>li:nth-child(even){
+	color: #ccc;
+	margin: 0 5px;
+	/*小竖线正好是偶数li*/
+}
+
+/*icon显示*/
+.vip>b{
+	background-image: url(../images/vip.jpg);
+	width: 24px;
+	height: 11px;
+	margin:0 3px 1px 0;
+}
+.qiye>b{
+	background-image: url(../images/dakehu.jpg);
+	width: 21px;
+	height: 11px;
+	margin:0 3px 1px 0;
+}
+.phone>i{
+	width: 13px;
+	height: 22px;
+	background-position: -128px -360px;
+	/*ps里测量，当前所需图片距离左侧652px，距离顶部213px
+	  ps里，ctrl-k打开单位设置，改标尺单位为像素！
+	*/
+	margin:0 3px 1px 0;
+	/*使用margin控制小图片显示的位置和周边距离！*/
+}
+.phone:hover>i{
+	/*不是.phone i:hover{}，而是划过li产生i的变化，li大，i小*/
+	background-position: -128px -399px;
+}
+.arrow>i{
+	width: 7px;
+	height: 4px;
+	background-position: -95px -55px;
+	margin:2px 0 0 3px;
+}
+.arrow:hover>i{
+	background-position: -95px -45px;/*通过背景position移动，产生icon变换*/
+	margin:0 0 0 3px;
+}
+
+/*下拉列表*/
+.arrow{
+	padding: 0 6px;
+	position: relative;
+	border:1px solid transparent;
+	/*使用1px透明边框，避免hover时，其它部件因增加边框而移位！*/
+	border-bottom-width: 0;
+}
+.arrow:hover{
+	border:1px solid #eee;	
+	border-bottom-width: 0;
+	background-color: #fff;/*白色背景用于遮盖header区域的下边框线*/
+}
+.arrow:hover>ul{
+	display: block;
+}
+.down_list{
+	display: none;
+	position: absolute;
+	left: -1px;
+	top: 30px;
+	border:1px solid #eee;
+	border-top-width: 0;
+	width: 100%;
+}
+.down_list>li{
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+}
+.down_list>li:hover{
+	background-color: #eee;
+}
+
+/*search部分：
+注意到，大多使用padding控制位置，保证从左向右的排列，没有使用width固定宽度！*/
+.search{
+	padding: 8px 0;
+	/*background-color: #ccc;使用背景色进行部件对正*/
+}
+.search>.search_mid{
+	margin: 4px 0 0 40px;
+	background-color: #cd292b
+	/*用父元素的背景色填充部件间的空白！*/
+}
+.search_text{
+	height: 30px;
+	width: 360px;
+	border:2px solid #cd292b;
+	padding: 0 10px;
+}
+.search_button{
+	height: 30px;
+	width: 80px;
+	background-color: #cd292b;
+	border-width: 0;
+	font-size: 14px;
+	color: #fff;
+}
+.search_button:hover{
+	cursor: pointer;
+}
+.resou{
+	/*font-size:10px;*/
+	color: #999;
+	background-color: #fff;	
+}
+.resou>li{
+	float: left;
+	margin-right: 5px;
+}
+.search_rf{
+	margin: 13px 0 0 40px;
+}
+.myjd{
+	border:1px solid #ddd;
+	background-color: #f7f7f7;
+	padding: 5px 10px;
+}
+.myjd>i{
+	width: 20px;
+	height: 17px;
+	background-position: -121px -30px;
+	margin: 0 5px 3px 0;	
+}
+.myjd:hover{
+	background-color: #fff;
+	cursor: pointer;/*按钮增加手型鼠标指针形状，模仿可点击链接*/
+}
+.myjd:hover>i{
+	background-position: -121px -60px;
+}
+.shixinsj{
+	/*不加宽高，只加border的，就可以产生三角构成的四方块！*/
+	display: inline-block;
+	vertical-align: middle;
+	/*必须加vertical-align: middle;才能通过margin改变上下位置！*/
+	border:5px solid;
+	border-color: #666 transparent transparent transparent;
+	/*border-color: #ff0 #f00 #0f0 #0ff;这个有意思，多彩三角*/
+	margin: 4px 0 0 5px;
+}
+.kongxinsj{
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	vertical-align: middle;
+	border:1px solid #666;
+	border-left: 0;
+	border-bottom: 0;
+	transform: rotate(45deg);
+	margin: 0 0 2px 5px;
+}
+.gocar{
+	border:1px solid #ddd;
+	background-color: #f7f7f7;
+	padding: 5px 10px;
+	margin-left: 20px;
+}
+.gocar:hover{
+	background-color: #fff;
+	cursor: pointer;
+}
+.gocar>i{
+	width: 20px;
+	height: 17px;
+	background-position: -121px -90px;
+	margin: 0 5px 1px 0;	
+}
+.gocar:hover>i{
+	background-position: -121px -120px;
+}
+
+
+/*nav部分*/
+.nav{
+	height: 35px;
+	background-color: #eb4545;
+}
+.nav>li{
+	float: left;
+	color: #fff;
+	padding: 0 40px;
+	line-height: 35px;
+	font-size: 16px;
+	font-weight: bold;
+}
+.nav>li:hover{
+	background-color: #cc2223;
+}
+.nav>.allpro{
+	/*直接写.allpro{}竟然没有上面.nav>li{}的级别高，
+	导致这里设置的padding不起作用*/
+	padding: 0 75px;
+	background-color: #cc2223;
+}
+.nav>li>a,.nav>li>a:hover{
+	color: #fff;
+}
+
+/*content部分*/
+/*content_lf部分*/
+.content_lf{
+	float: left;
+	width: 211px;
+	line-height: 30px;
+	font-size: 15px;
+	border: 1px solid #cc2223;
+}
+.content_lf>li>a{
+	margin-left:15px;
+	margin-right: -7px;
+}
+
+/*content_mid部分*/
+.content_mid{
+	margin: 10px 10px 0 10px;
+}
+.content_mid_top{
+	width: 670px;
+	height: 240px;
+}
+.content_mid_top>img{
+	width: 100%;
+}
+.content_mid_bottom{
+	border: 1px solid #ccc;
+	position: relative;
+	padding-left: 20px;
+}
+.content_mid_bottom>li{
+	width: 190px;
+	height: 145px;
+	float: left;
+	padding: 10px;
+	padding-top: 15px;
+	border-right: 1px solid #ccc;
+}
+.content_mid_bottom>.last{
+	border-right: 0;
+}
+.content_mid_bottom>.left{
+	position: absolute;
+	left:10px;
+	top:65px;
+	background-image: url(../images/ad-arraw.png);
+	width:25px;
+	height:35px;
+	background-position:0 0;
+}
+.content_mid_bottom>.left:hover{
+	background-image: url(../images/ad-arraw-hover.png);
+	background-position:0 0;
+}
+.content_mid_bottom>.right{
+	position: absolute;
+	right:10px;
+	top:65px;
+	background-image: url(../images/ad-arraw.png);
+	width:25px;
+	height:35px;
+	background-position:0 -35px;
+}
+.content_mid_bottom>.right:hover{
+	background-image: url(../images/ad-arraw-hover.png);
+	background-position:0 -35px;
+}
+
+/*content_rf*/
+.content_rf_top{
+	margin-top: 10px;
+}
+.content_rf_top>img{
+	width: 308px;
+	height: 70px;
+}
+.content_rf_mid1{
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 29px;
+}
+.content_rf_mid1 a.blue{
+	color: blue;
+}
+.content_rf_mid1 a.blue:hover{
+	color: red;
+}
+.content_rf_mid2{
+	border: 1px solid #ccc;
+	border-top-width: 3px;
+	padding: 5px;
+}
+.content_rf_mid2>ul{
+	margin: 0px 5px;
+}
+.content_rf_mid2>ul:nth-child(1){
+	border-right: 1px solid #eee;
+	padding-right: 10px;
+}
+.content_rf_mid2>ul>li{
+	line-height: 26px;
+}
+
+.content_rf_bottom{
+	width: 300px;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	margin-top: 10px;
+}
+.content_rf_bottom>li{
+	float: left;
+	width: 74px;
+	height: 69px;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	text-align: center;
+	line-height: 35px;
+	padding-top: 20px;
+}
+
+.content_rf_bottom>li>a>b{
+	width: 42px;
+	height: 29px;
+	background-image: url(../images/virtuals-20140606.png);
+}
+.content_rf_bottom>li:nth-child(1)>a>b{
+	background-position:0 0;
+}
+.content_rf_bottom>li:nth-child(2)>a>b{
+	background-position:-63px 0;
+}
+.content_rf_bottom>li:nth-child(3)>a>b{
+	background-position:-126px 0;
+}
+.content_rf_bottom>li:nth-child(4)>a>b{
+	background-position:-189px 0;
+}
+.content_rf_bottom>li:nth-child(5)>a>b{
+	border-left: 0;
+	background-position:0 -50px;
+}
+.content_rf_bottom>li:nth-child(6)>a>b{
+	background-position:-63px -50px;
+}
+.content_rf_bottom>li:nth-child(7)>a>b{
+	width: 39px;
+	height: 35px;
+	background-position:-127px -50px;
+}
+.content_rf_bottom>li:nth-child(8)>a>b{
+	background-position:-192px -50px;
+}
+
+
+/*main部分1*/
+.main>div{
+	margin: 10px 0;
+	font-size: 18px;
+	font-weight: bold;
+}
+.main>div>span{
+	font-size: 14px;
+	font-style: italic;
+	margin-left: 20px;
+}
+.main>li{
+	position: relative;
+	float: left;
+	width: 299px;
+	height: 190px;
+	overflow: hidden;
+	border: 1px solid transparent;
+}
+.main>li:hover{
+	border: 1px solid red;
+}
+.main>li:hover a>img{
+	transform: scale(1.2);
+}
+.main>li>a>img{
+	width: 100%;
+	height: 100%;
+	transition: 0.6s;
+}
+
+/*遮罩效果*/
+.main>li>.zhe{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 90px;
+	height: 100%;
+	background-color: rgba(100,100,100,0.5);
+	line-height: 24px;
+	font-weight: bold;
+	padding: 20px 10px;
+}
+.main>li>.zhe>.text1{
+	font-size: 16px;
+	color: #fff;
+}
+.main>li>.zhe>.text2{
+	font-size: 14px;
+	color: #ccc;
+}
+.main>li>.zhe>.text3{
+	font-size: 13px;
+	color: lightpink;
+}
+ 
+/*main2，title部分*/
+/*title部分思路，相同样式的使用li，不同的还是使用div，避免li影响其，更容易调整效果！
+都使用li了，是我的思路错误！*/
+.main>.title{
+	font-size: 16px;
+	border-bottom: 2px solid #999;
+	/*background-color: yellow;*/
+}
+.main>.title>li{
+	height: 35px;
+	float: left;
+	padding: 0 25px;
+	line-height: 36px;
+}
+/*1F气泡icon的做法，挺好！*/
+.main>.title>.louceng{
+	position: relative;
+	margin-left: 50px;
+}
+.main>.title>.louceng>b{
+	position: absolute;
+	bottom: -33px;
+	left: -50px;
+	background-image: url(../images/index_iconlist_01.png) no-repeat;
+	/*需要加入no-repeat，以保证安全性*/
+	width: 26px;
+	height: 34px;
+	background-position: 0 0;
+	color: #fff;
+	text-align: center;
+	line-height: 30px;
+	/*通过line-height<height,使文字位于气泡顶部*/
+	cursor: pointer;
+}
+.main>.title>.louceng>b:hover{
+	background-position: -40px 0;
+}
+
+.main>.title>.big_title{
+	/*只写.big_title{不能达到比上一css样式高级的效果，必须写的更细致！*/
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 30px;
+	/*通过这种方法使大字更高些！*/
+	margin-left: 40px;
+}
+.main>.title>.small_title{
+	float: right;
+}
+.main>.title>.small_title>a{
+	display: inline-block;
+	/*通过这种方式控制文字上下位置*/
+	font-size: 12px;
+	color: #005EA7;
+	margin: 13px 0 0 20px;
+	font-weight: normal;
+}
+
+
+/*main2内容部分*/
+.main>.main2_lf{
+	width: 204px;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 25px;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+	margin-top: -10px;
+}
+.main>.main2_lf>.main2_lf_top>ul{
+	float: left;
+	padding: 6px 0 6px 30px;
+}
+.main>.main2_lf>.main2_lf_bottom>img{
+	width: 200px;
+	height: 140px;
+}
+
+
+.main>.main2_mid{
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 25px;
+	margin-top: -10px;
+}
+/*有时候可以不必要写这么长.main>.main2_mid>.main2_mid_top>li，可以
+写成.main2_mid_top>li，只不过，在优先级对比的时候，要低于更详细的写法！
+没有优先级对比的时候，就可以简单写！*/
+.main>.main2_mid>.main2_mid_top>li{
+	float: left;
+	width: 159px;
+	height: 168px;
+	text-align: center;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;	
+	text-align: center;
+	padding-top: 8px;
+}
+.main>.main2_mid>.main2_mid_top>.big{
+	width: 479px;
+	height: 176px;
+	padding-top: 0px;
+}
+.main>.main2_mid>.main2_mid_top>.big>img{
+	width: 100%;
+	height: 100%;
+}
+
+.main>.main2_mid>.main2_mid_bottom>li{
+	float: left;
+	width: 159px;
+	height: 170px;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;	
+	text-align: center;
+	padding-top: 13px;
+}
+
+.main>.main2_rf{
+	width: 205px;
+	margin-top: -10px;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;	
+}
+.main>.main2_rf>.main2_rf_top{
+	padding-top: 2px;
+}
+.main>.main2_rf>.main2_rf_top>li>img{
+	float: left;
+}
+.main>.main2_rf>.main2_rf_bottom{
+	height: 178px;
+	padding-top: 5px;
+}
+.main>.main2_rf>.main2_rf_bottom>img{
+	width: 100%;
+	height: 100%;
+}
+
+/*footer部分*/
+.footer>.footer_ceng1{
+	padding-left: 90px;
+	border-top: 2px solid #999;
+	border-bottom: 1px solid #999;
+}
+.footer>.footer_ceng1>ul{
+	float: left;
+	width: 200px;
+	padding: 10px;
+}
+.footer>.footer_ceng1>ul>li{
+	line-height: 22px;
+	float: left;
+}
+.footer>.footer_ceng1>ul>li>i{
+	width: 40px;
+	height: 40px;
+}
+.footer>.footer_ceng1>ul:nth-child(1)>li>i{
+	background-position: 0px -55px;
+}
+.footer>.footer_ceng1>ul:nth-child(2)>li>i{
+	background-position: 0px -102px;
+}
+.footer>.footer_ceng1>ul:nth-child(3)>li>i{
+	background-position: 0px -149px;
+}
+.footer>.footer_ceng1>ul:nth-child(4)>li>i{
+	background-position: -50px -55px;
+}
+.footer>.footer_ceng1>ul:nth-child(5)>li>i{
+	background-position: -50px -102px;
+}
+
+.footer>.footer_ceng1>ul>li>ul>li:nth-child(1){
+	font-size: 14px;
+	font-weight: bold;
+}
+
+
+.footer_ceng2{
+	width: 860px;
+	margin: 15px auto;
+}
+.footer_ceng2>li{
+	float: left;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+.footer_ceng2>li:nth-child(even){
+	width: 20px;
+}
+
+.footer_ceng3{
+	text-align: center;
+}
+
+.footer_ceng4{
+	text-align: center;
+}
